@@ -4,7 +4,7 @@
     <listen_try>1</listen_try>
 
     <logger>
-        <console>true</console>
+        <!-- <console>true</console> -->
         <level>trace</level>
         <log>/var/log/clickhouse-server/clickhouse-server.log</log>
         <errorlog>/var/log/clickhouse-server/clickhouse-server.err.log</errorlog>
