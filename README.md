@@ -4,11 +4,12 @@ This is a simple example of how to run a clickhouse cluster with docker-compose.
 
 ## How to run
 1. Install docker-compose (https://docs.docker.com/compose/install/)
-2. Run `make start` to start the cluster
-3. Run `make connect` to connect to the cluster
-4. Run `make stop` to stop the cluster
-5. Run `make clean` to clean up the cluster
-6. Run `make clean-containers` to clean up the docker containers
+2. Create a `clickhouse-net` network via `docker network create clickhouse-net`
+3. Run `make start` to start the cluster
+4. Run `make connect` to connect to the cluster
+5. Run `make stop` to stop the cluster
+6. Run `make clean` to clean up the cluster
+7. Run `make clean-containers` to clean up the docker containers
 
 Additionally, you can run `make attach-r1` to attach to the first replica
 container or `make attach-r2` to attach to the second replica container.
