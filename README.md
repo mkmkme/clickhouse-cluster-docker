@@ -23,7 +23,7 @@ First replica of each shard is used to also serve clickhouse-keeper.
 The cluster can be configured to use the `ch-server` docker image, which is a
 customized version of the official clickhouse image. To build `ch-server`:
 
-1. Put `clickhouse` image in `./docker/server/` directory
+1. Put `clickhouse` binary in `./docker/server/` directory
 2. Run `make build-server`
 
 
