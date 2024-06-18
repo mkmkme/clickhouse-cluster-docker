@@ -1,0 +1,95 @@
+x-clickhouse-base: &clickhouse-base
+  image: clickhouse/clickhouse-server
+  # image: ch-server
+  ulimits:
+    nofile:
+      soft: 262144
+      hard: 262144
+    nproc: 65535
+
+services:
+  clickhouse-s1-r1:
+    <<: *clickhouse-base
+    container_name: clickhouse-s1-r1
+    hostname: clickhouse-s1-r1
+    ports:
+      - 9001:9000
+      - 8124:8123
+      - 9182:9181
+    volumes:
+      - ./config/generated/node-s1-r1:/etc/clickhouse-server/config.d/
+      - ch-data-s1-r1:/var/lib/clickhouse/
+
+
+  clickhouse-s1-r2:
+    <<: *clickhouse-base
+    container_name: clickhouse-s1-r2
+    hostname: clickhouse-s1-r2
+    ports:
+      - 9002:9000
+      - 8125:8123
+      - 9183:9181
+    volumes:
+      - ./config/generated/node-s1-r2:/etc/clickhouse-server/config.d/
+      - ch-data-s1-r2:/var/lib/clickhouse/
+
+  clickhouse-s2-r1:
+    <<: *clickhouse-base
+    container_name: clickhouse-s2-r1
+    hostname: clickhouse-s2-r1
+    ports:
+      - 9003:9000
+      - 8126:8123
+      - 9184:9181
+    volumes:
+      - ./config/generated/node-s2-r1:/etc/clickhouse-server/config.d/
+      - ch-data-s2-r1:/var/lib/clickhouse/
+
+  clickhouse-s2-r2:
+    <<: *clickhouse-base
+    container_name: clickhouse-s2-r2
+    hostname: clickhouse-s2-r2
+    ports:
+      - 9004:9000
+      - 8127:8123
+      - 9185:9181
+    volumes:
+      - ./config/generated/node-s2-r2:/etc/clickhouse-server/config.d/
+      - ch-data-s2-r2:/var/lib/clickhouse/
+
+  clickhouse-s3-r1:
+    <<: *clickhouse-base
+    container_name: clickhouse-s3-r1
+    hostname: clickhouse-s3-r1
+    ports:
+      - 9005:9000
+      - 8128:8123
+      - 9186:9181
+    volumes:
+      - ./config/generated/node-s3-r1:/etc/clickhouse-server/config.d/
+      - ch-data-s3-r1:/var/lib/clickhouse/
+
+  clickhouse-s3-r2:
+    <<: *clickhouse-base
+    container_name: clickhouse-s3-r2
+    hostname: clickhouse-s3-r2
+    ports:
+      - 9006:9000
+      - 8129:8123
+      - 9187:9181
+    volumes:
+      - ./config/generated/node-s3-r2:/etc/clickhouse-server/config.d/
+      - ch-data-s3-r2:/var/lib/clickhouse/
+
+volumes:
+  ch-data-s1-r1:
+  ch-data-s1-r2:
+  ch-data-s2-r1:
+  ch-data-s2-r2:
+  ch-data-s3-r1:
+  ch-data-s3-r2:
+
+networks:
+  default:
+    name: 'clickhouse-net'
+    external: true
